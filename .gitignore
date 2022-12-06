@@ -1,0 +1,9 @@
+/vendor/
+composer.lock
+doc.txt
+penjualan.sql
+testing.php
+.htaccess
+.env
+data-mysql/
+tes.php
