@@ -143,6 +143,12 @@ die;
                     <input class="form-control form-control-lg border-warning" type="number" id="bayar" name="bayar" oninput="showKembali(this.value)"  placeholder="0">
                   </div>
                 </div>
+                <div class="form-group row">
+                  <div class="col">
+                    <label class="col-md-3 col-form-label">ID member</label>
+                    <input class="form-control form-control-lg border-warning" type="number" id="bayar" name="bayar" oninput="showKembali(this.value)"  placeholder="0">
+                  </div>
+                </div>
               </div>
 
               <div class="col-sm-12 col-md-8">

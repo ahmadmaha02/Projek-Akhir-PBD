@@ -106,12 +106,12 @@
     }
     
     function edit_member(id){
+      save_method = 'edit';
       $.ajax({
         url : "<?php echo site_url('member/find_member')?>/" + id,
         type: "GET",
         dataType: "JSON",
         success: function(data) {
-          save_method = 'update';
           $("#member_id").val(data.member_id);
           $("#member_name").val(data.member_name);
           $("#member_email").val(data.member_email);
@@ -125,6 +125,39 @@
         }
       });
     }
+    function hapus_member(id) {
+      save_method = 'delete';
+      swal({
+        title: "Hapus Member?",
+        text: "Memeber akan dihapus permanen",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          $.ajax({
+            url : "<?= site_url('member/hapus_member')?>/"+id,
+            type: "POST",
+            dataType: "JSON",
+            success: function(data) {
+
+              swal("member berhasil dihapus", {
+                icon: "success",
+              });
+              reload_table();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              swal("member gagal dihapus", {
+                icon: "success",
+              });
+            }
+          });
+        } else {
+          swal("Terima kasih");
+        }
+      });
+    }
 
     function close_modal() {
       $('#modal_member').modal('hide');
@@ -134,8 +167,12 @@
       var url;
       if (save_method === 'add') {
         url = "<?= site_url('member/save_member')?>";
-      } else {
+      } else if(save_method == 'delete'){
+        url : "<?= site_url('member/hapus_member')?>/";
+        
+      }else {
         url = "<?= site_url('member/update_member')?>";
+
       }
       $.ajax({
         url : url,

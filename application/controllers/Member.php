@@ -41,7 +41,9 @@ class Member extends CI_Controller
 			$row[]  = $user->member_email;
 			$row[]  = $user->member_telephone;
 			$row[]  = $user->discount . ' %';
-			$row[]  = '<button class="btn btn-danger btn-sm" roler="button" onClick="edit_member(' . "'" . $user->member_id . "'" . ')">Edit</button>';
+			$btn_edit   = $this->session->userdata('update') ? '<a class="btn btn-sm btn-warning" href="javascript:void(0)" title="Edit" onclick="edit_member(' . "'" . $user->member_id . "'" . ')"><i class="far fa-edit"></i></a>' : '';
+			$btn_delete = $this->session->userdata('delete') ? '<a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_member(' . "'" . $user->member_id . "'" . ')"><i class="far fa-trash-alt"></i></a>' : '';
+			$row[]      = $btn_edit . ' ' . $btn_delete;
 			$data[] = $row;
 		}
 		$output = [
@@ -90,5 +92,10 @@ class Member extends CI_Controller
 				'status' => $this->input->post('member_id'),
 			]
 		);
+	}
+	public function hapus_member($id)
+	{
+		$this->model_member->delete_by_id($id);
+		echo json_encode(['status' => true]);
 	}
 }

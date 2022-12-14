@@ -72,8 +72,8 @@
                     </div>
                   </div>
 
-                  <input type="hidden" class="reset" id="jenis_promo" name="jenis_promo">
                   <input type="hidden" class="reset" id="potongan" name="potongan">
+                  <input type="hidden" class="reset" id="jenis_promo" name="jenis_promo">
                   <input type="hidden" class="reset" id="harga_potongan" name="harga_potongan">
 
                   <div class="form-group row">
